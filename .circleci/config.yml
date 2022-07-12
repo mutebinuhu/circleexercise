@@ -11,13 +11,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: sudo apt-get install npm
       - run: npm i
-      - save_cache:
-          key: "npm-packages"
-          paths:
-            - "/src/node-modules"
-      - run: npm run lint
 
 
 
