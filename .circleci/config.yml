@@ -13,7 +13,20 @@ jobs:
       - checkout
       - run: npm i
       - run: npm run lint
+  
+  test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: npm i
+      - run: npm run test
 
+  analyze:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: npm i
+      - run: npm audit
 
 
   
@@ -23,4 +36,10 @@ workflows:
   compile-code-workflow:
     jobs:
       - build
+      - test:
+          requires:
+            - build
+      - analyze:
+          requires:
+            - test
     
