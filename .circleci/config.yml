@@ -11,6 +11,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - run: sudo apt-get install npm
       - run: npm run install
       - save_cache:
           key: "npm-packages"
